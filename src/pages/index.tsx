@@ -1,33 +1,97 @@
 import "twin.macro"
 
 import { Unstable_Grid2 } from "@mui/material"
-import Link from "next/link"
-import { coreStyles } from "styles/core"
+import { CryptoIcon } from "components/icon"
+import { FC, PropsWithChildren } from "react"
 
-const routes = ["chains"]
-
-const RouteTemp = () => {
+const IntroductionSection = () => {
   return (
-    <Unstable_Grid2 container tw="w-full flex-col items-center">
-      {routes.map((route) => (
-        <Unstable_Grid2
-          key={route}
-          tw="pb-0 text-center text-2xl"
-          xs={4}
-          sm={4}
-          md={4}>
-          <Link href={route}>{route}</Link>
+    <section>
+      <Unstable_Grid2 container tw="w-full flex-col items-center">
+        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
+          <CryptoIcon color="color" symbol="BTC" width={24} height={24} />
         </Unstable_Grid2>
-      ))}
-    </Unstable_Grid2>
+      </Unstable_Grid2>
+    </section>
+  )
+}
+
+const RoadmapSection = () => {
+  return (
+    <section>
+      <Unstable_Grid2 container tw="w-full flex-col items-center">
+        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
+          RoadmapSection
+        </Unstable_Grid2>
+      </Unstable_Grid2>
+    </section>
+  )
+}
+
+const PricingSection = () => {
+  return (
+    <section>
+      <Unstable_Grid2 container tw="w-full flex-col items-center">
+        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
+          PricingSection
+        </Unstable_Grid2>
+      </Unstable_Grid2>
+    </section>
+  )
+}
+const SubscribeSection = () => {
+  return (
+    <section>
+      <Unstable_Grid2 container tw="w-full flex-col items-center">
+        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
+          SubscribeSection
+        </Unstable_Grid2>
+      </Unstable_Grid2>
+    </section>
+  )
+}
+
+const Header = () => {
+  return (
+    <header>
+      <Unstable_Grid2 container tw="w-full flex-col items-center">
+        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
+          Header
+        </Unstable_Grid2>
+      </Unstable_Grid2>
+    </header>
+  )
+}
+const Footer = () => {
+  return (
+    <footer>
+      <Unstable_Grid2 container tw="w-full flex-col items-center">
+        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
+          Footer
+        </Unstable_Grid2>
+      </Unstable_Grid2>
+    </footer>
+  )
+}
+
+const Layout: FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <div>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </div>
   )
 }
 
 const Home = () => {
   return (
-    <div css={coreStyles.container({ hasBackground: true })}>
-      <RouteTemp />
-    </div>
+    <Layout>
+      <IntroductionSection />
+      <RoadmapSection />
+      <PricingSection />
+      <SubscribeSection />
+    </Layout>
   )
 }
 
