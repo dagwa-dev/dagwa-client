@@ -1,8 +1,7 @@
 import "twin.macro"
 
-import AdbIcon from "@mui/icons-material/Adb"
 import MenuIcon from "@mui/icons-material/Menu"
-import { Typography, Unstable_Grid2 } from "@mui/material"
+import { Paper, TextField, Typography, Unstable_Grid2 } from "@mui/material"
 import AppBar from "@mui/material/AppBar"
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -40,8 +39,8 @@ const IntroductionSection = () => {
   )
 
   return (
-    <section tw="w-full flex items-center bg-gray-100 py-8">
-      <div tw="w-full items-center xl:w-1/2">
+    <section tw="max-w-7xl my-0 mx-auto flex items-center py-8">
+      <div tw="w-full mx-4 items-center xl:w-1/2">
         <Typography
           tw="text-center font-extrabold text-4xl"
           variant="h2"
@@ -49,7 +48,7 @@ const IntroductionSection = () => {
           The Decentralized Application List
         </Typography>
       </div>
-      <div tw="w-full items-center hidden xl:block xl:w-1/2">
+      <div tw="w-full mx-4 items-center hidden xl:block xl:w-1/2">
         <Unstable_Grid2 container spacing={2} tw="flex justify-center">
           {majorCryptoCurrenciesTop4.map((symbol) => (
             <Unstable_Grid2 key={symbol} tw="flex justify-center">
@@ -58,30 +57,34 @@ const IntroductionSection = () => {
           ))}
           <Unstable_Grid2 tw="flex justify-center w-12" />
         </Unstable_Grid2>
-        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
-          <Unstable_Grid2 tw="flex justify-center w-12" />
-          {randomCryptoCurrencies.slice(0, 4).map((symbol) => (
-            <Unstable_Grid2 key={symbol} tw="flex justify-center">
-              <CryptoCurrencyCard symbol={symbol} size={48} />
+        {randomCryptoCurrencies && (
+          <>
+            <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+              <Unstable_Grid2 tw="flex justify-center w-12" />
+              {randomCryptoCurrencies.slice(0, 4).map((symbol) => (
+                <Unstable_Grid2 key={symbol} tw="flex justify-center">
+                  <CryptoCurrencyCard symbol={symbol} size={48} />
+                </Unstable_Grid2>
+              ))}
             </Unstable_Grid2>
-          ))}
-        </Unstable_Grid2>
-        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
-          {randomCryptoCurrencies.slice(4, 8).map((symbol) => (
-            <Unstable_Grid2 key={symbol} tw="flex justify-center">
-              <CryptoCurrencyCard symbol={symbol} size={48} />
+            <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+              {randomCryptoCurrencies.slice(4, 8).map((symbol) => (
+                <Unstable_Grid2 key={symbol} tw="flex justify-center">
+                  <CryptoCurrencyCard symbol={symbol} size={48} />
+                </Unstable_Grid2>
+              ))}
+              <Unstable_Grid2 tw="flex justify-center w-12" />
             </Unstable_Grid2>
-          ))}
-          <Unstable_Grid2 tw="flex justify-center w-12" />
-        </Unstable_Grid2>
-        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
-          <Unstable_Grid2 tw="flex justify-center w-12" />
-          {randomCryptoCurrencies.slice(8, 12).map((symbol) => (
-            <Unstable_Grid2 key={symbol} tw="flex justify-center">
-              <CryptoCurrencyCard symbol={symbol} size={48} />
+            <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+              <Unstable_Grid2 tw="flex justify-center w-12" />
+              {randomCryptoCurrencies.slice(8, 12).map((symbol) => (
+                <Unstable_Grid2 key={symbol} tw="flex justify-center">
+                  <CryptoCurrencyCard symbol={symbol} size={48} />
+                </Unstable_Grid2>
+              ))}
             </Unstable_Grid2>
-          ))}
-        </Unstable_Grid2>
+          </>
+        )}
       </div>
     </section>
   )
@@ -111,13 +114,55 @@ const PricingSection = () => {
   )
 }
 const SubscribeSection = () => {
+  const [email, setEmail] = useState("")
+
+  const onSubmit = () => {
+    console.info(email)
+  }
+
   return (
-    <section tw="w-full flex items-center bg-white py-8">
-      <Unstable_Grid2 container tw="w-full flex-col items-center">
-        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
-          SubscribeSection
+    <section tw="max-w-7xl my-0 mx-auto flex items-center py-8">
+      <Paper tw="w-full px-6 py-8 mx-4">
+        <Unstable_Grid2 container tw="w-full flex items-start justify-between">
+          <Unstable_Grid2 tw="pb-0 text-2xl" xs={4} sm={4} md={4}>
+            <Typography variant="h3" component={"h3"} tw="text-2xl mb-2">
+              Subscribe to our news
+            </Typography>
+            <Typography variant="h4" component={"h4"} tw="text-sm">
+              Get the newsletter and all the latest trends directly to your
+              inbox.
+            </Typography>
+          </Unstable_Grid2>
+          <Unstable_Grid2 tw="pb-0 flex justify-center" xs={4} sm={4} md={4}>
+            <TextField
+              id="margin-dense"
+              placeholder="Your email"
+              value={email}
+              color="info"
+              inputProps={{
+                style: {
+                  width: "240px",
+                  paddingRight: "10px",
+                  paddingLeft: "10px",
+                  paddingTop: "8px",
+                  paddingBottom: "8px",
+                  fontSize: "18px",
+                },
+              }}
+              onChange={(e) => {
+                setEmail(e.target.value)
+              }}
+            />
+            <Button
+              variant="contained"
+              onClick={onSubmit}
+              color="info"
+              tw="ml-2 text-lg">
+              Subscribe
+            </Button>
+          </Unstable_Grid2>
         </Unstable_Grid2>
-      </Unstable_Grid2>
+      </Paper>
     </section>
   )
 }
@@ -251,12 +296,15 @@ const Header = () => {
     </AppBar>
   )
 }
+
 const Footer = () => {
   return (
-    <footer>
-      <Unstable_Grid2 container tw="w-full flex-col items-center">
-        <Unstable_Grid2 tw="pb-0 text-center text-2xl" xs={4} sm={4} md={4}>
-          Footer
+    <footer tw="max-w-7xl my-0 mx-auto">
+      <Unstable_Grid2 container tw="w-full mx-4">
+        <Unstable_Grid2>
+          <Typography variant="h6" component={"h6"} tw="text-sm">
+            © 2023 Dagwa. All rights reserved
+          </Typography>
         </Unstable_Grid2>
       </Unstable_Grid2>
     </footer>
