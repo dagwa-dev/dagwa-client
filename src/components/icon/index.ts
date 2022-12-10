@@ -1,0 +1,1 @@
+export { CryptoCurrencyIcon } from "./CryptoCurrencyIcon"
