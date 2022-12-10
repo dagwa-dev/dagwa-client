@@ -1,29 +1,73 @@
 import "twin.macro"
 
-import { Unstable_Grid2 } from "@mui/material"
-import { CryptoIcon } from "components/icon"
+import { Typography, Unstable_Grid2 } from "@mui/material"
+import { CryptoCurrencyCard } from "components/card/CryptoCurrencyCard"
+import { CRYPTO_CURRENCY_SYMBOL } from "components/icon/CryptoCurrencyIcon/constants"
+import { CryptoCurrencySymbol } from "components/icon/CryptoCurrencyIcon/type"
 import { FC, PropsWithChildren } from "react"
+import { genUniqueRandomNumArr } from "utils/common"
+
+const majorCryptoCurrenciesTop4: CryptoCurrencySymbol[] = [
+  "BTC",
+  "ETH",
+  "BNB",
+  "MATIC",
+]
 
 const IntroductionSection = () => {
+  const randomNumArr12 = genUniqueRandomNumArr(
+    12,
+    CRYPTO_CURRENCY_SYMBOL.length,
+  )
+
+  const randomCryptoCurrencies = randomNumArr12.map(
+    (randomNum) => CRYPTO_CURRENCY_SYMBOL[randomNum],
+  )
+
   return (
-    <section>
-      <Unstable_Grid2 container tw="w-full justify-between items-center">
-        <Unstable_Grid2 tw="flex justify-center" xs={2} sm={2} md={2}>
-          <CryptoIcon color="color" symbol="BTC" width={24} height={24} />
+    <section tw="w-full flex items-center bg-gray-100 py-8">
+      <div tw="w-1/2 items-center">
+        <Typography
+          tw="text-center font-extrabold text-4xl"
+          variant="h2"
+          component={"h2"}>
+          The Decentralized Application List
+        </Typography>
+      </div>
+      <div tw="w-1/2 items-center">
+        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+          {majorCryptoCurrenciesTop4.map((symbol) => (
+            <Unstable_Grid2 key={symbol} tw="flex justify-center">
+              <CryptoCurrencyCard symbol={symbol} size={48} />
+            </Unstable_Grid2>
+          ))}
+          <Unstable_Grid2 tw="flex justify-center w-12" />
         </Unstable_Grid2>
-        <Unstable_Grid2 tw="flex justify-center" xs={2} sm={2} md={2}>
-          <CryptoIcon color="color" symbol="ETH" width={24} height={24} />
+        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+          <Unstable_Grid2 tw="flex justify-center w-12" />
+          {randomCryptoCurrencies.slice(0, 4).map((symbol) => (
+            <Unstable_Grid2 key={symbol} tw="flex justify-center">
+              <CryptoCurrencyCard symbol={symbol} size={48} />
+            </Unstable_Grid2>
+          ))}
         </Unstable_Grid2>
-        <Unstable_Grid2 tw="flex justify-center" xs={2} sm={2} md={2}>
-          <CryptoIcon color="color" symbol="BNB" width={24} height={24} />
+        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+          {randomCryptoCurrencies.slice(4, 8).map((symbol) => (
+            <Unstable_Grid2 key={symbol} tw="flex justify-center">
+              <CryptoCurrencyCard symbol={symbol} size={48} />
+            </Unstable_Grid2>
+          ))}
+          <Unstable_Grid2 tw="flex justify-center w-12" />
         </Unstable_Grid2>
-        <Unstable_Grid2 tw="flex justify-center" xs={2} sm={2} md={2}>
-          <CryptoIcon color="color" symbol="MATIC" width={24} height={24} />
+        <Unstable_Grid2 container spacing={2} tw="flex justify-center">
+          <Unstable_Grid2 tw="flex justify-center w-12" />
+          {randomCryptoCurrencies.slice(8, 12).map((symbol) => (
+            <Unstable_Grid2 key={symbol} tw="flex justify-center">
+              <CryptoCurrencyCard symbol={symbol} size={48} />
+            </Unstable_Grid2>
+          ))}
         </Unstable_Grid2>
-        <Unstable_Grid2 tw="flex justify-center" xs={2} sm={2} md={2}>
-          <CryptoIcon color="color" symbol="SOL" width={24} height={24} />
-        </Unstable_Grid2>
-      </Unstable_Grid2>
+      </div>
     </section>
   )
 }
@@ -100,8 +144,8 @@ const Home = () => {
   return (
     <Layout>
       <IntroductionSection />
-      <RoadmapSection />
-      <PricingSection />
+      {/* <RoadmapSection /> */}
+      {/* <PricingSection /> */}
       <SubscribeSection />
     </Layout>
   )

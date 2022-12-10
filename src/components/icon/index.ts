@@ -1,1 +1,1 @@
-export { CryptoIcon } from "./CryptoIcon/CryptoIcon"
+export { CryptoCurrencyIcon } from "./CryptoCurrencyIcon"
