@@ -1,4 +1,4 @@
-import { Chain, ChainTvl } from "utils/chains/types"
+import { Chain, ChainTvl } from "lib/chains/types"
 
 export type GetChain = (chainId: string) => Promise<Chain | undefined>
 export type GetChains = () => Promise<Chain[]>

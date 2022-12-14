@@ -1,5 +1,5 @@
 import { RequestConfig } from "api/axios/types"
-import { Chain, ChainTvl } from "utils/chains/types"
+import { Chain, ChainTvl } from "lib/chains/types"
 
 // Common Chainss Get Method
 export type CommonChainsGetMethod<C = any, R = any> = (config?: C) => Promise<R>

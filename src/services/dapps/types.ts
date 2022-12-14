@@ -1,4 +1,4 @@
-import { Dapp } from "utils/dapps/types"
+import { Dapp } from "lib/dapps/types"
 
 export type GetDapp = (dappId: string) => Dapp | undefined
 export type GetDapps = () => Dapp[]

@@ -1,5 +1,5 @@
-import { CategoryInterests, OfficialLinks } from "utils/common/types"
-import { Token } from "utils/tokens/types"
+import { CategoryInterests, OfficialLinks } from "lib/common/types"
+import { Token } from "lib/tokens/types"
 
 export type Dapp = {
   dappId: string

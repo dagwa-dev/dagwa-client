@@ -1,4 +1,4 @@
-import { Chain } from "utils/chains/types"
+import { Chain } from "lib/chains/types"
 
 import { GetChains, GetChainTvls } from "./types"
 

@@ -1,4 +1,4 @@
-import { Token } from "utils/tokens/types"
+import { Token } from "lib/tokens/types"
 
 export interface ITokensService {
   getToken(ticker: string): Token | undefined

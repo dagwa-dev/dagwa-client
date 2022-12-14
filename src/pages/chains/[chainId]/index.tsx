@@ -2,9 +2,9 @@ import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
 import { DappCard } from "components/card/DappCard"
+import { Dapp } from "lib/dapps/types"
 import { GetServerSideProps, NextPage } from "next"
 import { chainsService, dappsService } from "services"
-import { Dapp } from "utils/dapps/types"
 
 interface ChainPageProps {
   dapps: Partial<Dapp>[]
