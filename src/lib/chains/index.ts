@@ -1,4 +1,4 @@
-import { matchIncludWithLowerCase } from "utils/common"
+import { matchIncludWithLowerCase } from "lib/common"
 
 import { allExtraRpcs, chainIds, chainList } from "./constants"
 import { Chain, ChainTvl } from "./types"

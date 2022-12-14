@@ -1,6 +1,6 @@
 import { appConfig } from "api/appConfig"
 import { IAxiosApiClient } from "api/axios/interface"
-import { getChain } from "utils/chains"
+import { getChain } from "lib/chains"
 
 import { IChainsApiClient } from "./interface"
 import {

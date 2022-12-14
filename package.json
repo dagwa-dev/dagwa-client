@@ -43,6 +43,7 @@
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@types/gtag.js": "^0.0.12",
     "@types/lodash": "^4.14.186",
     "@types/node": "^18.11.3",
     "@types/react": "18.0.21",

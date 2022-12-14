@@ -1,4 +1,4 @@
-import { getDapp, getDappList, getDappListWithChain } from "utils/dapps"
+import { getDapp, getDappList, getDappListWithChain } from "lib/dapps"
 
 import { IDappsService } from "./interface"
 import { GetDapp, GetDapps, GetDappsWithChain } from "./types"

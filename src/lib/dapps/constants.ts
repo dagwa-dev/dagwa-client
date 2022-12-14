@@ -1,4 +1,4 @@
-import { getTokenListWithTags } from "utils/tokens"
+import { getTokenListWithTags } from "lib/tokens"
 
 import { Dapp } from "./types"
 

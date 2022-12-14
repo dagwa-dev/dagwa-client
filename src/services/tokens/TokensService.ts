@@ -1,4 +1,4 @@
-import { getToken, getTokenList } from "utils/tokens"
+import { getToken, getTokenList } from "lib/tokens"
 
 import { ITokensService } from "./interface"
 

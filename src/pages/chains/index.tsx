@@ -2,15 +2,15 @@ import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
 import { ChainCard } from "components/card/ChainCard"
+import { isTestnetOrDevnetChain, sortingChainsWithTvls } from "lib/chains"
+import { Chain, ChainTvl } from "lib/chains/types"
+import { numWithComma } from "lib/common"
 import { GetServerSideProps, NextPage } from "next"
 import { useMemo } from "react"
 import { useRecoilValue } from "recoil"
 import { chainsService } from "services"
 import { searchState } from "states/atoms/search"
 import { testnetState } from "states/atoms/testnet"
-import { isTestnetOrDevnetChain, sortingChainsWithTvls } from "utils/chains"
-import { Chain, ChainTvl } from "utils/chains/types"
-import { numWithComma } from "utils/common"
 
 interface ChainsPageProps {
   sortedChains: Chain[]

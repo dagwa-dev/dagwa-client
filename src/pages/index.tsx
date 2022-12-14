@@ -15,8 +15,8 @@ import Tooltip from "@mui/material/Tooltip"
 import { CryptoCurrencyCard } from "components/card/CryptoCurrencyCard"
 import { CRYPTO_CURRENCY_SYMBOL } from "components/icon/CryptoCurrencyIcon/constants"
 import { CryptoCurrencySymbol } from "components/icon/CryptoCurrencyIcon/type"
+import { genUniqueRandomNumArr } from "lib/common"
 import { FC, MouseEvent, PropsWithChildren, useState } from "react"
-import { genUniqueRandomNumArr } from "utils/common"
 
 const pages = ["Products", "Pricing", "Blog"]
 const settings = ["Profile", "Account", "Dashboard", "Logout"]

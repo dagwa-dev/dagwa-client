@@ -6,10 +6,10 @@ import { NFT } from "api/nfts/types"
 import { NftCard } from "components/card/NftCard"
 import { TokenChart } from "components/chart/TokenChart"
 import { TokenInfoTable } from "components/table/TokenInfoTable"
+import { NFTsToken } from "lib/tokens/types"
 import { GetServerSideProps, NextPage } from "next"
 import { dappsService, nftsService } from "services"
 import { ulid } from "ulid"
-import { NFTsToken } from "utils/tokens/types"
 
 const options = {
   responsive: true,
