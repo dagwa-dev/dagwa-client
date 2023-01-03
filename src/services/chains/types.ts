@@ -1,5 +1,5 @@
-import { Chain, ChainTvl } from "lib/chains/types"
+import { GetChainRes, GetChainsRes } from "api/chains/types"
+import { PageOptions } from "api/common/types"
 
-export type GetChain = (chainId: string) => Promise<Chain | undefined>
-export type GetChains = () => Promise<Chain[]>
-export type GetChainTvls = () => Promise<ChainTvl[]>
+export type GetChain = (chainId: string) => GetChainRes
+export type GetChains = (params: PageOptions) => GetChainsRes

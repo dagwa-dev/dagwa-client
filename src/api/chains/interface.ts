@@ -1,9 +1,6 @@
-import { Chain } from "lib/chains/types"
-
-import { GetChains, GetChainTvls } from "./types"
+import { GetChain, GetChains } from "./types"
 
 export interface IChainsApiClient {
-  getChain(chainId: string): Promise<Chain | undefined>
+  getChain: GetChain
   getChains: GetChains
-  getChainTvls: GetChainTvls
 }

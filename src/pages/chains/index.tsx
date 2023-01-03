@@ -2,36 +2,25 @@ import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
 import { ChainCard } from "components/card/ChainCard"
-import { isTestnetOrDevnetChain, sortingChainsWithTvls } from "lib/chains"
-import { Chain, ChainTvl } from "lib/chains/types"
 import { numWithComma } from "lib/common"
+import { Chain } from "models/chain"
 import { GetServerSideProps, NextPage } from "next"
-import { useMemo } from "react"
 import { useRecoilValue } from "recoil"
 import { chainsService } from "services"
-import { searchState } from "states/atoms/search"
 import { testnetState } from "states/atoms/testnet"
 
 interface ChainsPageProps {
-  sortedChains: Chain[]
-  chainCounts: string
+  chains: Chain[]
+  totalChainCounts: string
   totalDappCounts: string
 }
 
 const ChainsPage: NextPage<ChainsPageProps> = ({
-  sortedChains,
-  chainCounts,
+  chains,
+  totalChainCounts,
   totalDappCounts,
 }) => {
   const testnets = useRecoilValue(testnetState)
-  const search = useRecoilValue(searchState)
-
-  const getChainsByNetwork = () =>
-    testnets
-      ? sortedChains
-      : sortedChains.filter((item) => !isTestnetOrDevnetChain(item))
-
-  const chains = useMemo(getChainsByNetwork, [testnets, sortedChains])
 
   return (
     <div tw="w-full">
@@ -41,7 +30,7 @@ const ChainsPage: NextPage<ChainsPageProps> = ({
             Select chain
           </Typography>
           <Typography variant="h5" component={"h5"}>
-            {chainCounts} CHAINS - {totalDappCounts} DAPPS
+            {totalChainCounts} CHAINS - {totalDappCounts} DAPPS
           </Typography>
         </div>
         <Unstable_Grid2
@@ -49,13 +38,9 @@ const ChainsPage: NextPage<ChainsPageProps> = ({
           tw="mt-2"
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 4, md: 12 }}>
-          {chains.map(({ name: title, chainId }) => (
-            <Unstable_Grid2 key={title} xs={4} sm={4} md={4} tw="pb-0">
-              <ChainCard
-                href={`/chains/${chainId}`}
-                title={title}
-                desc={`${numWithComma(1234)} dapps`}
-              />
+          {chains.map(({ name }) => (
+            <Unstable_Grid2 key={name} xs={4} sm={4} md={4} tw="pb-0">
+              <ChainCard title={name} desc={`${numWithComma(1234)} dapps`} />
             </Unstable_Grid2>
           ))}
         </Unstable_Grid2>
@@ -67,18 +52,19 @@ const ChainsPage: NextPage<ChainsPageProps> = ({
 export const getServerSideProps: GetServerSideProps<
   ChainsPageProps
 > = async () => {
-  const chains: Chain[] = await chainsService.getChains()
-  const chainTvls: ChainTvl[] = await chainsService.getChainTvls()
+  const chains = await chainsService.getChains({
+    page: 1,
+    take: 10,
+    order: "DESC",
+  })
 
-  const sortedChains = sortingChainsWithTvls(chains, chainTvls)
-
-  const chainCounts = numWithComma(chains.length)
+  const totalChainCounts = numWithComma(chains.meta.itemCount)
   const totalDappCounts = numWithComma(1000) // sample
 
   return {
     props: {
-      sortedChains,
-      chainCounts,
+      chains: chains.data,
+      totalChainCounts,
       totalDappCounts,
     },
   }

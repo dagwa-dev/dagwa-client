@@ -19,7 +19,7 @@ export const appConfig: AppConfig = {
   authApiBase: "",
   nftApiBase: "",
   cryptoCurrencyApiBase: "",
-  dagwaApiBase: process.env.IS_LOCAL ? "http://localhost:23223" : "",
+  dagwaApiBase: process.env.IS_LOCAL ? "http://localhost:23223" : "dagwa-api.up.railway.app",
   cmcApiBase: "https://sandbox-api.coinmarketcap.com/v1",
   covalentApiBase: "https://api.covalenthq.com/v1",
   chainApiBase: "https://chainid.network",

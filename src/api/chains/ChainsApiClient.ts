@@ -1,41 +1,29 @@
 import { appConfig } from "api/appConfig"
 import { IAxiosApiClient } from "api/axios/interface"
-import { getChain } from "lib/chains"
 
 import { IChainsApiClient } from "./interface"
 import {
+  GetChain,
+  GetChainReq,
+  GetChainRes,
+  GetChains,
   GetChainsReq,
   GetChainsRes,
-  GetChainTvlsReq,
-  GetChainTvlsRes,
 } from "./types"
 
 export default class ChainsApiClient implements IChainsApiClient {
+  path = "chain"
   apiBase: string
-  tvlsApiBase: string
   chainApiClient: IAxiosApiClient
 
   constructor(chainApiClient: IAxiosApiClient) {
-    this.apiBase = appConfig.chainApiBase
-    this.tvlsApiBase = appConfig.chainTvlsApiBase
+    this.apiBase = appConfig.dagwaApiBase
     this.chainApiClient = chainApiClient
   }
 
-  getChain = async (chainId: string) => {
-    const chains = await this.getChains()
-    const chain = chains.find((chain) => String(chain.chainId) === chainId)
-    return chain
-  }
+  getChain: GetChain = async (chainId) =>
+    this.chainApiClient.get<GetChainRes, GetChainReq>(`${this.path}/${chainId}`)
 
-  getChains = () => {
-    return this.chainApiClient.get<GetChainsRes, GetChainsReq>(
-      `${this.apiBase}/chains.json`,
-    )
-  }
-
-  getChainTvls = () => {
-    return this.chainApiClient.get<GetChainTvlsRes, GetChainTvlsReq>(
-      `${this.tvlsApiBase}/chains/`,
-    )
-  }
+  getChains: GetChains = async (config) =>
+    this.chainApiClient.get<GetChainsRes, GetChainsReq>(this.path, config)
 }

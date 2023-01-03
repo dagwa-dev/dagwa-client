@@ -1,25 +1,14 @@
 import { RequestConfig } from "api/axios/types"
-import { Chain, ChainTvl } from "lib/chains/types"
+import { PageOptions, PageResultAsync } from "api/common/types"
+import { Chain } from "models/chain"
 
-// Common Chainss Get Method
-export type CommonChainsGetMethod<C = any, R = any> = (config?: C) => Promise<R>
-
+// GetChain
+export type GetChainReq = object
+export type GetChainRes = Promise<Chain>
+export type GetChain = (chainId: string) => GetChainRes
 // GetChains
 export type GetChainsReq = object
-export type GetChainsRes = Chain[]
-export type GetChainsParams = object
+export type GetChainsRes = PageResultAsync<Chain>
+export type GetChainsParams = PageOptions
 export type GetChainsConfig = RequestConfig<GetChainsReq, GetChainsParams>
-export type GetChains = CommonChainsGetMethod<GetChainsConfig, GetChainsRes>
-
-// GetChainTvls
-export type GetChainTvlsReq = object
-export type GetChainTvlsRes = ChainTvl[]
-export type GetChainTvlsParams = object
-export type GetChainTvlsConfig = RequestConfig<
-  GetChainTvlsReq,
-  GetChainTvlsParams
->
-export type GetChainTvls = CommonChainsGetMethod<
-  GetChainTvlsConfig,
-  GetChainTvlsRes
->
+export type GetChains = (config: GetChainsConfig) => GetChainsRes

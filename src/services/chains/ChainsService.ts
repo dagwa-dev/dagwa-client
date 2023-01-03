@@ -1,7 +1,7 @@
 import { IChainsApiClient } from "api/chains/interface"
 
 import { IChainsService } from "./interface"
-import { GetChain, GetChains, GetChainTvls } from "./types"
+import { GetChain, GetChains } from "./types"
 
 export class ChainsService implements IChainsService {
   readonly chainsApiClient
@@ -11,14 +11,12 @@ export class ChainsService implements IChainsService {
   }
 
   getChain: GetChain = async (chainId) => {
-    return this.chainsApiClient.getChain(chainId)
+    const result = await this.chainsApiClient.getChain(chainId)
+    return result
   }
 
-  getChains: GetChains = async () => {
-    return this.chainsApiClient.getChains()
-  }
-
-  getChainTvls: GetChainTvls = async () => {
-    return this.chainsApiClient.getChainTvls()
+  getChains: GetChains = async (params) => {
+    const result = await this.chainsApiClient.getChains({ params })
+    return result
   }
 }
