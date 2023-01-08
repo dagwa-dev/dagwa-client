@@ -1,3 +1,5 @@
-export const handleServiceError = (error?: unknown | Error) => {
+import { AxiosError } from "axios"
+
+export const handleServiceError = (error?: unknown | AxiosError) => {
   console.error(error)
 }

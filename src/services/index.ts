@@ -1,1 +1,2 @@
-export { chainsService } from "./chains"
+export { chainService } from "./chain"
+export { dAppService } from "./dApp"
