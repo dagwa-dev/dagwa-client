@@ -1,4 +1,3 @@
-import { appConfig } from "api/appConfig"
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios"
 
 import { ApiConfiguration } from "./AxiosApiConfiguration"
@@ -12,7 +11,7 @@ export default class AxiosApiClient implements IAxiosApiClient {
     apiConfiguration: ApiConfiguration,
   ): AxiosInstance {
     return Axios.create({
-      baseURL: appConfig.authApiBase,
+      baseURL: apiConfiguration.baseUrl,
       responseType: "json" as const,
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +27,7 @@ export default class AxiosApiClient implements IAxiosApiClient {
     this.client = this.createAxiosClient(apiConfiguration)
   }
 
-  async post<T = any, D = any>(
+  async post<T = unknown, D = unknown>(
     path: string,
     payload: D,
     config?: AxiosRequestConfig<D>,
@@ -46,7 +45,7 @@ export default class AxiosApiClient implements IAxiosApiClient {
     return {} as T
   }
 
-  async patch<T = any, D = any>(
+  async patch<T = unknown, D = unknown>(
     path: string,
     payload: D,
     config?: AxiosRequestConfig<D>,
@@ -64,7 +63,7 @@ export default class AxiosApiClient implements IAxiosApiClient {
     return {} as T
   }
 
-  async put<T = any, D = any>(
+  async put<T = unknown, D = unknown>(
     path: string,
     payload: D,
     config?: AxiosRequestConfig<D>,
@@ -82,7 +81,7 @@ export default class AxiosApiClient implements IAxiosApiClient {
     return {} as T
   }
 
-  async get<T = any, D = any>(
+  async get<T = unknown, D = unknown>(
     path: string,
     config?: AxiosRequestConfig<D>,
   ): Promise<T> {

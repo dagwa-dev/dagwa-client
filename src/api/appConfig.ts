@@ -1,31 +1,30 @@
+process.env.COIN_MARKET_CAP_KEY
 type AppConfig = {
+  // third-party
   cmcKey: string
-  authApiBase: string
-  nftApiBase: string
-  cryptoCurrencyApiBase: string
   cmcApiBase: string
-  covalentApiBase: string
-  sampleWalletAddress: string
-  chainApiBase: string
-  chainTvlsApiBase: string
-  balancesApiBase: string
   covalentKey: string
+  covalentApiBase: string
+  chainNetworkApiBase: string
+  chainTvlsApiBase: string
+  // service
   accessToken: string
-  dagwaApiBase: string
+  serviceApiBase: string
+  chainApiBase: string
+  dAppApiBase: string
 }
 
 export const appConfig: AppConfig = {
-  cmcKey: process.env.COIN_MARKET_CAP_KEY || "",
-  authApiBase: "",
-  nftApiBase: "",
-  cryptoCurrencyApiBase: "",
-  dagwaApiBase: process.env.IS_LOCAL ? "http://localhost:23223" : "",
-  cmcApiBase: "https://sandbox-api.coinmarketcap.com/v1",
-  covalentApiBase: "https://api.covalenthq.com/v1",
-  chainApiBase: "https://chainid.network",
-  chainTvlsApiBase: "https://api.llama.fi",
-  balancesApiBase: "",
-  covalentKey: process.env.COVALENT_KEY || "",
-  sampleWalletAddress: process.env.SAMPLE_WALLET_ADDRESS || "",
+  // third-party
+  cmcKey: `${process.env.COIN_MARKET_CAP_KEY || ""}`,
+  cmcApiBase: `${process.env.CMC_ENDPOINT || ""}`,
+  covalentKey: `${process.env.COVALENT_KEY || ""}`,
+  covalentApiBase: `${process.env.COVALENT_ENDPOINT || ""}`,
+  chainNetworkApiBase: `${process.env.CHAIN_NETWORK_ENDPOINT || ""}`,
+  chainTvlsApiBase: `${process.env.LLAMAFI_ENDPOINT || ""}`,
+  // service
   accessToken: "",
+  serviceApiBase: `${process.env.SERVICE_ENDPOINT || "http://localhost"}`,
+  chainApiBase: "/chain",
+  dAppApiBase: "/d_app",
 }
