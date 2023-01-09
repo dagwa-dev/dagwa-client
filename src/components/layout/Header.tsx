@@ -12,11 +12,22 @@ import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import Toolbar from "@mui/material/Toolbar"
 import Tooltip from "@mui/material/Tooltip"
+import { useRouter } from "next/router"
 import { MouseEvent, useState } from "react"
 
-const pages = ["Products", "Pricing", "Blog"]
+type Page = {
+  name: string
+  path: string
+}
+
+const pages: Page[] = [
+  { name: "D APP LIST", path: "d_app" },
+  { name: "CHAIN LIST", path: "chain" },
+]
+// const pages = ["D-App", "Chains", "Blog"]
 
 export const Header = () => {
+  const router = useRouter()
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
@@ -29,6 +40,10 @@ export const Header = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null)
+  }
+
+  const toPage = async (path: string) => {
+    await router.push(path)
   }
 
   const handleCloseUserMenu = () => {
@@ -83,8 +98,13 @@ export const Header = () => {
                 display: { xs: "block", md: "none" },
               }}>
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => {
+                    handleCloseNavMenu()
+                    toPage(page.path)
+                  }}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -102,11 +122,14 @@ export const Header = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Tooltip key={page} title="Coming soon">
+              <Tooltip key={page.name} title="Coming soon">
                 <Button
-                  onClick={handleCloseNavMenu}
+                  onClick={() => {
+                    handleCloseNavMenu()
+                    toPage(page.path)
+                  }}
                   tw="my-2 text-black block text-sm">
-                  {page}
+                  {page.name}
                 </Button>
               </Tooltip>
             ))}

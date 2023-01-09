@@ -2,8 +2,10 @@ import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
 import { CryptoCurrencyCard } from "components/card/CryptoCurrencyCard"
+import { CRYPTO_CURRENCY_SYMBOL } from "components/icon/CryptoCurrencyIcon/constants"
 import { CryptoCurrencySymbol } from "components/icon/CryptoCurrencyIcon/type"
-import { FC } from "react"
+import { genUniqueRandomNumArr } from "lib/common"
+import { FC, useEffect, useState } from "react"
 
 const majorCryptoCurrenciesTop4: CryptoCurrencySymbol[] = [
   "BTC",
@@ -12,13 +14,21 @@ const majorCryptoCurrenciesTop4: CryptoCurrencySymbol[] = [
   "MATIC",
 ]
 
-interface IntroductionSectionProps {
-  randomCryptoCurrencies: CryptoCurrencySymbol[]
-}
+const randomNumArr12 = genUniqueRandomNumArr(12, CRYPTO_CURRENCY_SYMBOL.length)
 
-export const IntroductionSection: FC<IntroductionSectionProps> = ({
-  randomCryptoCurrencies,
-}) => {
+interface IntroductionSectionProps {}
+
+export const IntroductionSection: FC<IntroductionSectionProps> = () => {
+  const [randomCryptoCurrencies, setRandomCryptoCurrencies] = useState<
+    CryptoCurrencySymbol[]
+  >([])
+
+  useEffect(() => {
+    setRandomCryptoCurrencies(
+      randomNumArr12.map((randomNum) => CRYPTO_CURRENCY_SYMBOL[randomNum]),
+    )
+  }, [])
+
   return (
     <section tw="max-w-7xl my-0 mx-auto flex items-center py-8">
       <div tw="w-full mx-4 items-center xl:w-1/2">

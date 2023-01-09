@@ -12,19 +12,21 @@ type AppConfig = {
   serviceApiBase: string
   chainApiBase: string
   dAppApiBase: string
+  subscriberApiBase: string
 }
 
 export const appConfig: AppConfig = {
   // third-party
   cmcKey: `${process.env.COIN_MARKET_CAP_KEY || ""}`,
-  cmcApiBase: `${process.env.CMC_ENDPOINT || ""}`,
+  cmcApiBase: "https://sandbox-api.coinmarketcap.com/v1",
   covalentKey: `${process.env.COVALENT_KEY || ""}`,
-  covalentApiBase: `${process.env.COVALENT_ENDPOINT || ""}`,
-  chainNetworkApiBase: `${process.env.CHAIN_NETWORK_ENDPOINT || ""}`,
-  chainTvlsApiBase: `${process.env.LLAMAFI_ENDPOINT || ""}`,
+  covalentApiBase: "https://api.covalenthq.com/v1",
+  chainNetworkApiBase: "https://chainid.network",
+  chainTvlsApiBase: "https://api.llama.fi",
   // service
   accessToken: "",
-  serviceApiBase: `${process.env.SERVICE_ENDPOINT || "http://localhost"}`,
+  serviceApiBase: "https://dagwa-api.up.railway.app",
   chainApiBase: "/chain",
   dAppApiBase: "/d_app",
+  subscriberApiBase: "/subscriber",
 }
