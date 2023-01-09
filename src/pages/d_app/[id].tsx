@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps<
   DAppDetailPageQuery
 > = async (context) => {
   const dApp = await dAppService.getDApp(String(context.params?.id))
-  
+
   return {
     props: {
       dApp,
