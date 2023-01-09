@@ -25,7 +25,7 @@ export const appConfig: AppConfig = {
   chainTvlsApiBase: "https://api.llama.fi",
   // service
   accessToken: "",
-  serviceApiBase: "https://dagwa-api.up.railway.app",
+  serviceApiBase: "https://dagwa-api-production.up.railway.app",
   chainApiBase: "/chain",
   dAppApiBase: "/d_app",
   subscriberApiBase: "/subscriber",

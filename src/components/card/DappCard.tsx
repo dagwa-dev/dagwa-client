@@ -12,7 +12,7 @@ import { useRouter } from "next/router"
 import { FC, PropsWithChildren, useState } from "react"
 import tw from "twin.macro"
 
-interface DappCardProps extends PropsWithChildren {
+interface DAppCardProps extends PropsWithChildren {
   title?: string
   chainId?: string
   dappId?: string
@@ -32,7 +32,7 @@ const styles = {
   ],
 }
 
-export const DappCard: FC<DappCardProps> = ({
+export const DAppCard: FC<DAppCardProps> = ({
   chainId = "",
   dappId = "",
   height = "140",
