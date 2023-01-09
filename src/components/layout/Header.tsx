@@ -21,8 +21,8 @@ type Page = {
 }
 
 const pages: Page[] = [
-  { name: "D-App List", path: "d_app" },
-  { name: "Chain List", path: "chain" },
+  { name: "D APP LIST", path: "d_app" },
+  { name: "CHAIN LIST", path: "chain" },
 ]
 // const pages = ["D-App", "Chains", "Blog"]
 

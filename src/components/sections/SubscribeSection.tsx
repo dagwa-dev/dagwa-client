@@ -1,14 +1,39 @@
 import "twin.macro"
 
-import { Paper, TextField, Typography, Unstable_Grid2 } from "@mui/material"
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+  TextField,
+  Typography,
+  Unstable_Grid2,
+} from "@mui/material"
 import Button from "@mui/material/Button"
-import { useState } from "react"
+import { FC, useState } from "react"
 
-export const SubscribeSection = () => {
+import { useSubscription } from " hooks/useSubscription"
+
+type SubscribeSectionProps = object
+
+export const SubscribeSection: FC<SubscribeSectionProps> = () => {
+  const { trigger } = useSubscription()
+  const [open, setOpen] = useState(false)
   const [email, setEmail] = useState("")
 
-  const onSubmit = () => {
-    console.info(email)
+  const handleSubmit = async () => {
+    handleClose()
+    await trigger(email)
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
   }
 
   return (
@@ -46,11 +71,36 @@ export const SubscribeSection = () => {
             />
             <Button
               variant="contained"
-              onClick={onSubmit}
+              onClick={handleClickOpen}
               color="info"
               tw="ml-2 text-lg">
               Subscribe
             </Button>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description">
+              <DialogTitle id="alert-dialog-title">
+                {"You're Almost Done. Activate Your Subscription!"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Subscribe to get the latest news and updates as quickly as
+                  possible!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button
+                  onClick={() => {
+                    handleSubmit()
+                  }}
+                  autoFocus>
+                  Subscribe
+                </Button>
+              </DialogActions>
+            </Dialog>
           </Unstable_Grid2>
         </Unstable_Grid2>
       </Paper>

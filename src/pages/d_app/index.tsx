@@ -27,7 +27,7 @@ const DAppListPage: NextPage<DAppListPageProps> = ({
           Select dApp
         </Typography>
         <Typography variant="h5" component={"h5"}>
-          {totalDAppCounts} CHAINS - {totalDappCounts} DAPPS
+          {totalDAppCounts} D App - {totalDappCounts} DAPPS
         </Typography>
       </div>
       <Unstable_Grid2

@@ -1,9 +1,9 @@
 import { IChainApiClient } from "api/chain/interface"
 
-import { IChainsService } from "./interface"
+import { IChainService } from "./interface"
 import { GetChain, GetChains } from "./types"
 
-export class ChainService implements IChainsService {
+export class ChainService implements IChainService {
   readonly apiClient
 
   constructor(apiClient: IChainApiClient) {
