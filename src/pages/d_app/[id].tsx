@@ -1,10 +1,11 @@
 import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
+import { getAllDApp, getOneDApp } from "api/dApp/DAppApiClient"
+import { appConfig } from "libs/appConfig"
 import { DApp } from "models/dApp"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { ParsedUrlQuery } from "querystring"
-import { dAppService } from "services"
 
 type DAppDetailPageProps = {
   dApp: DApp
@@ -27,7 +28,7 @@ const DAppDetailPage: NextPage<DAppDetailPageProps> = ({ dApp }) => (
 )
 
 export const getStaticPaths: GetStaticPaths<DAppDetailPageQuery> = async () => {
-  const dApps = await dAppService.getDApps({
+  const dApps = await getAllDApp(`${appConfig.serviceApiBase}/d_app`, {
     page: 1,
     take: 10,
   })
@@ -46,7 +47,8 @@ export const getStaticProps: GetStaticProps<
   DAppDetailPageProps,
   DAppDetailPageQuery
 > = async (context) => {
-  const dApp = await dAppService.getDApp(String(context.params?.id))
+  const id = String(context.params?.id)
+  const dApp = await getOneDApp(`${appConfig.serviceApiBase}/d_app/${id}`)
 
   return {
     props: {

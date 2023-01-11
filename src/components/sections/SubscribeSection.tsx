@@ -15,7 +15,7 @@ import Button from "@mui/material/Button"
 import { useSubscription } from "hooks/useSubscription"
 import { FC, useState } from "react"
 
-type SubscribeSectionProps = object
+type SubscribeSectionProps = unknown
 
 export const SubscribeSection: FC<SubscribeSectionProps> = () => {
   const { trigger } = useSubscription()
@@ -24,7 +24,7 @@ export const SubscribeSection: FC<SubscribeSectionProps> = () => {
 
   const handleSubmit = async () => {
     handleClose()
-    await trigger(email)
+    await trigger({ email })
   }
 
   const handleClickOpen = () => {

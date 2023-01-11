@@ -1,15 +1,16 @@
-import { appConfig } from "api/appConfig"
-import axios from "axios"
+import { serviceApiRequest } from "api/axios/AxiosApiClient"
+import { AxiosError } from "axios"
+import { appConfig } from "libs/appConfig"
 import useMutation, { SWRMutationResponse } from "swr/mutation"
 
 const baseUrl = appConfig.serviceApiBase
 
-export const useSWRMutation = <D = unknown, E = unknown>(
+export const useSWRMutation = <T = unknown, D = unknown>(
   path: string,
-  fetcher = (url: string, options: Readonly<{ arg: unknown }>) =>
-    axios.request<D>({ url, data: options.arg }).then((res) => res.data),
-): SWRMutationResponse<D, E> => {
+  fetcher = (url: string, extraArgument?: any) =>
+    serviceApiRequest<T, D>({ url, data: extraArgument }),
+): SWRMutationResponse<T, AxiosError<T, D>, D> => {
   const key = baseUrl + path
 
-  return useMutation<D, E>(key, fetcher)
+  return useMutation(key, fetcher)
 }

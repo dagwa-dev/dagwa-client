@@ -1,30 +1,12 @@
-import { appConfig } from "api/appConfig"
-import { IAxiosApiClient } from "api/axios/interface"
+import { serviceApiRequest } from "api/axios/AxiosApiClient"
 
-import { IDAppApiClient } from "./interface"
-import {
-  GetAllDApp,
-  GetAllDAppReq,
-  GetAllDAppRes,
-  GetOneDApp,
-  GetOneDAppReq,
-  GetOneDAppRes,
-} from "./types"
+import { GetAllDApp, GetAllDAppRes, GetOneDApp, GetOneDAppRes } from "./types"
 
-export default class DAppApiClient implements IDAppApiClient {
-  apiBase: string
-  DAppApiClient: IAxiosApiClient
+export const getOneDApp: GetOneDApp = async (url) =>
+  serviceApiRequest<GetOneDAppRes>({
+    url,
+    method: "GET",
+  })
 
-  constructor(DAppApiClient: IAxiosApiClient) {
-    this.apiBase = appConfig.dAppApiBase
-    this.DAppApiClient = DAppApiClient
-  }
-
-  getOne: GetOneDApp = async (id) =>
-    this.DAppApiClient.get<GetOneDAppRes, GetOneDAppReq>(
-      `${this.apiBase}/${id}`,
-    )
-
-  getAll: GetAllDApp = async (config) =>
-    this.DAppApiClient.get<GetAllDAppRes, GetAllDAppReq>(this.apiBase, config)
-}
+export const getAllDApp: GetAllDApp = async (url, params) =>
+  serviceApiRequest<GetAllDAppRes>({ url, method: "GET", params })

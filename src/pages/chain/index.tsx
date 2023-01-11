@@ -1,25 +1,26 @@
 import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
+import { getAllChain } from "api/chain/ChainApiClient"
 import { ChainCard } from "components/card/ChainCard"
-import { numWithComma } from "lib/common"
+import { appConfig } from "libs/appConfig"
+import { numWithComma } from "libs/common"
 import { Chain } from "models/chain"
 import { GetStaticProps, NextPage } from "next"
 import { ParsedUrlQuery } from "querystring"
-import { chainService } from "services"
 
 type ChainListPageProps = {
   chains: Chain[]
   totalChainCounts: string
-  totalDappCounts: string
+  totalDAppCounts: string
 }
 
-type ChainListPageQuery = ParsedUrlQuery & object
+type ChainListPageQuery = ParsedUrlQuery
 
 const ChainListPage: NextPage<ChainListPageProps> = ({
   chains,
   totalChainCounts,
-  totalDappCounts,
+  totalDAppCounts,
 }) => (
   <div tw="w-full">
     <section tw="max-w-5xl mx-auto px-2 py-4">
@@ -28,7 +29,7 @@ const ChainListPage: NextPage<ChainListPageProps> = ({
           Select chain
         </Typography>
         <Typography variant="h5" component={"h5"}>
-          {totalChainCounts} CHAINS - {totalDappCounts} DAPPS
+          {totalChainCounts} CHAINS - {totalDAppCounts} DAPPS
         </Typography>
       </div>
       <Unstable_Grid2
@@ -41,7 +42,7 @@ const ChainListPage: NextPage<ChainListPageProps> = ({
             <ChainCard
               title={name}
               desc={`${numWithComma(1234)} dapps`}
-              href={`/chains/${String(id)}`}
+              href={`/chain/${String(id)}`}
             />
           </Unstable_Grid2>
         ))}
@@ -54,19 +55,19 @@ export const getStaticProps: GetStaticProps<
   ChainListPageProps,
   ChainListPageQuery
 > = async () => {
-  const chains = await chainService.getChains({
+  const chains = await getAllChain(`${appConfig.serviceApiBase}/chain`, {
     page: 1,
     take: 10,
   })
 
   const totalChainCounts = numWithComma(chains.meta.itemCount)
-  const totalDappCounts = numWithComma(1000) // sample
+  const totalDAppCounts = numWithComma(1000) // sample
 
   return {
     props: {
       chains: chains.data,
       totalChainCounts,
-      totalDappCounts,
+      totalDAppCounts,
     },
   }
 }

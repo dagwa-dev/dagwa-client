@@ -4,7 +4,7 @@ import { Typography, Unstable_Grid2 } from "@mui/material"
 import { CryptoCurrencyCard } from "components/card/CryptoCurrencyCard"
 import { CRYPTO_CURRENCY_SYMBOL } from "components/icon/CryptoCurrencyIcon/constants"
 import { CryptoCurrencySymbol } from "components/icon/CryptoCurrencyIcon/type"
-import { genUniqueRandomNumArr } from "lib/common"
+import { genUniqueRandomNumArr } from "libs/common"
 import { FC, useEffect, useState } from "react"
 
 const majorCryptoCurrenciesTop4: CryptoCurrencySymbol[] = [
@@ -16,7 +16,7 @@ const majorCryptoCurrenciesTop4: CryptoCurrencySymbol[] = [
 
 const randomNumArr12 = genUniqueRandomNumArr(12, CRYPTO_CURRENCY_SYMBOL.length)
 
-interface IntroductionSectionProps {}
+type IntroductionSectionProps = unknown
 
 export const IntroductionSection: FC<IntroductionSectionProps> = () => {
   const [randomCryptoCurrencies, setRandomCryptoCurrencies] = useState<

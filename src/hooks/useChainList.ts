@@ -1,11 +1,18 @@
-import { PageResult } from "api/common/types"
-import { AxiosError } from "axios"
-import { Chain } from "models/chain"
+import { getAllChain } from "api/chain/ChainApiClient"
+import { GetAllChainParams, GetAllChainRes } from "api/chain/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 
-export const useChainList = () => {
-  const { data, error } = useSWRQuery<PageResult<Chain>, AxiosError>("chain")
+const getAllChainFetcher = (
+  url: string,
+  extraArgument: GetAllChainParams,
+): Promise<GetAllChainRes> => getAllChain(url, extraArgument)
+
+export const useChainList = (params: GetAllChainParams) => {
+  const { data, error } = useSWRQuery<GetAllChainRes, GetAllChainParams>(
+    ["chain", params],
+    getAllChainFetcher,
+  )
 
   const loading = !data && !error
   const loggedOut = error && error.status === 403
@@ -13,6 +20,6 @@ export const useChainList = () => {
   return {
     loading,
     loggedOut,
-    chains: data,
+    chainList: data,
   }
 }

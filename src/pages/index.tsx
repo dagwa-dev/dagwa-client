@@ -5,7 +5,7 @@ import { IntroductionSection } from "components/sections/IntroductionSection"
 import { SubscribeSection } from "components/sections/SubscribeSection"
 import { NextPage } from "next"
 
-interface HomePageProps {}
+type HomePageProps = unknown
 
 const HomePage: NextPage<HomePageProps> = () => (
   <Layout>

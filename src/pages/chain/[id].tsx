@@ -1,10 +1,11 @@
 import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
+import { getAllChain, getOneChain } from "api/chain/ChainApiClient"
+import { appConfig } from "libs/appConfig"
 import { Chain } from "models/chain"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { ParsedUrlQuery } from "querystring"
-import { chainService } from "services"
 
 type ChainDetailPageProps = {
   chain: Chain
@@ -29,7 +30,7 @@ const ChainDetailPage: NextPage<ChainDetailPageProps> = ({ chain }) => (
 export const getStaticPaths: GetStaticPaths<
   ChainDetailPageQuery
 > = async () => {
-  const chains = await chainService.getChains({
+  const chains = await getAllChain(`${appConfig.serviceApiBase}/chain`, {
     page: 1,
     take: 10,
   })
@@ -50,8 +51,9 @@ export const getStaticProps: GetStaticProps<
   ChainDetailPageProps,
   ChainDetailPageQuery
 > = async (context) => {
-  const chain = await chainService.getChain(String(context.params?.id))
-
+  const id = String(context.params?.id)
+  const chain = await getOneChain(`${appConfig.serviceApiBase}/chain/${id}`)
+  console.info(chain)
   return {
     props: {
       chain,
