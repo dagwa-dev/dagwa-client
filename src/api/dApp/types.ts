@@ -1,14 +1,13 @@
-import { RequestConfig } from "api/axios/types"
-import { PageOptions, PageResultAsync } from "api/common/types"
+import { PageOptions, PageResult } from "api/common/types"
 import { DApp } from "models/dApp"
 
 // GetOneDApp
-export type GetOneDAppReq = object
-export type GetOneDAppRes = Promise<DApp>
-export type GetOneDApp = (id: string) => GetOneDAppRes
+export type GetOneDAppRes = DApp
+export type GetOneDApp = (url: string) => Promise<GetOneDAppRes>
 // GetAllDApp
-export type GetAllDAppReq = object
-export type GetAllDAppRes = PageResultAsync<DApp>
+export type GetAllDAppRes = PageResult<DApp>
 export type GetAllDAppParams = PageOptions
-export type GetAllDAppConfig = RequestConfig<GetAllDAppReq, GetAllDAppParams>
-export type GetAllDApp = (config: GetAllDAppConfig) => GetAllDAppRes
+export type GetAllDApp = (
+  url: string,
+  params: GetAllDAppParams,
+) => Promise<GetAllDAppRes>

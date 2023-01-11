@@ -1,6 +1,5 @@
 import { ApolloProvider } from "@apollo/client"
-import axios from "axios"
-import { client } from "lib/apollo"
+import { client } from "libs/apollo"
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import { useRouter } from "next/router"
@@ -10,7 +9,7 @@ import { RecoilRoot } from "recoil"
 import StyleProvider from "styles/StyleProvider"
 import { SWRConfig } from "swr"
 
-import * as gtag from "../lib/gtag"
+import * as gtag from "../libs/gtag"
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()

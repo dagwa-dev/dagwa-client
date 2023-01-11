@@ -1,17 +1,19 @@
-import axios, { AxiosError } from "axios"
+import { createSubscriber } from "api/subscriber/SubscriberApiClient"
+import { CreateSubscriberReq, CreateSubscriberRes } from "api/subscriber/types"
 
 import { useSWRMutation } from "./useSWRMutation"
 
-export const useSubscription = () => {
-  return useSWRMutation<object, AxiosError>("/subscriber", (url, options) =>
-    axios
-      .request<object>({
-        url,
-        method: "POST",
-        data: {
-          email: options.arg,
-        },
-      })
-      .then((res) => res.data),
+const subscriptionFetcher = (
+  url: string,
+  extraArgument: CreateSubscriberReq,
+): Promise<CreateSubscriberRes> => createSubscriber(url, extraArgument)
+
+export const useSubscription = () =>
+  useSWRMutation<CreateSubscriberRes, CreateSubscriberReq>(
+    "/subscriber",
+    subscriptionFetcher,
   )
-}
+
+// example
+// const { trigger: createSubscriber } = useSubscription()
+// createSubscriber({ email: "" })

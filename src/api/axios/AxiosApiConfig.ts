@@ -1,4 +1,4 @@
-export class ApiConfiguration {
+export class ApiConfig {
   baseUrl: string
   accessToken?: string
 

@@ -1,11 +1,18 @@
-import { PageResult } from "api/common/types"
-import { AxiosError } from "axios"
-import { DApp } from "models/dApp"
+import { getAllDApp } from "api/dApp/DAppApiClient"
+import { GetAllDAppParams, GetAllDAppRes } from "api/dApp/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 
-export const useDAppList = () => {
-  const { data, error } = useSWRQuery<PageResult<DApp>, AxiosError>("d_app")
+const getAllDAppFetcher = (
+  url: string,
+  extraArgument: GetAllDAppParams,
+): Promise<GetAllDAppRes> => getAllDApp(url, extraArgument)
+
+export const useDAppList = (params: GetAllDAppParams) => {
+  const { data, error } = useSWRQuery<GetAllDAppRes, GetAllDAppParams>(
+    ["d_app", params],
+    getAllDAppFetcher,
+  )
 
   const loading = !data && !error
   const loggedOut = error && error.status === 403
@@ -13,6 +20,6 @@ export const useDAppList = () => {
   return {
     loading,
     loggedOut,
-    dApps: data,
+    dAppList: data,
   }
 }

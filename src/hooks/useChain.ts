@@ -1,10 +1,9 @@
-import { AxiosError } from "axios"
-import { Chain } from "models/chain"
+import { GetOneChainRes } from "api/chain/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 
 export const useChain = (id: string) => {
-  const { data, error } = useSWRQuery<Chain, AxiosError>(`chain/${id}`)
+  const { data, error } = useSWRQuery<GetOneChainRes>(`chain/${id}`)
 
   const loading = !data && !error
   const loggedOut = error && error.status === 403
