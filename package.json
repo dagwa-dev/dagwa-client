@@ -64,8 +64,10 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-simple-import-sort": "^8.0.0",
+    "husky": "^8.0.3",
     "jest": "^29.2.1",
     "jest-environment-jsdom": "^29.2.1",
+    "lint-staged": "^13.1.0",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.2.1",
@@ -75,6 +77,16 @@
   "babelMacros": {
     "twin": {
       "preset": "emotion"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "next lint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   }
 }

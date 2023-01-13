@@ -11,17 +11,12 @@ import { ParsedUrlQuery } from "querystring"
 
 type ChainListPageProps = {
   chains: Chain[]
-  totalChainCounts: string
-  totalDAppCounts: string
+  total: string
 }
 
 type ChainListPageQuery = ParsedUrlQuery
 
-const ChainListPage: NextPage<ChainListPageProps> = ({
-  chains,
-  totalChainCounts,
-  totalDAppCounts,
-}) => (
+const ChainListPage: NextPage<ChainListPageProps> = ({ chains, total }) => (
   <div tw="w-full">
     <section tw="max-w-5xl mx-auto px-2 py-4">
       <div tw="flex justify-between items-center lg:flex-row flex-col">
@@ -29,7 +24,7 @@ const ChainListPage: NextPage<ChainListPageProps> = ({
           Select chain
         </Typography>
         <Typography variant="h5" component={"h5"}>
-          {totalChainCounts} CHAINS - {totalDAppCounts} DAPPS
+          {total} CHAINS
         </Typography>
       </div>
       <Unstable_Grid2
@@ -37,13 +32,9 @@ const ChainListPage: NextPage<ChainListPageProps> = ({
         tw="mt-2"
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 4, md: 12 }}>
-        {chains.map(({ id, name, unit }) => (
+        {chains.map(({ ulid, name, unit }) => (
           <Unstable_Grid2 key={unit} xs={4} sm={4} md={4} tw="pb-0">
-            <ChainCard
-              title={name}
-              desc={`${numWithComma(1234)} dapps`}
-              href={`/chain/${String(id)}`}
-            />
+            <ChainCard title={name} href={`/chain/${ulid}`} />
           </Unstable_Grid2>
         ))}
       </Unstable_Grid2>
@@ -60,14 +51,12 @@ export const getStaticProps: GetStaticProps<
     take: 10,
   })
 
-  const totalChainCounts = numWithComma(chains.meta.itemCount)
-  const totalDAppCounts = numWithComma(1000) // sample
+  const total = numWithComma(chains.meta.itemCount)
 
   return {
     props: {
       chains: chains.data,
-      totalChainCounts,
-      totalDAppCounts,
+      total,
     },
   }
 }

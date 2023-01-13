@@ -9,7 +9,7 @@ interface ChainCardProps extends PropsWithChildren {
   alt?: string
   image?: string
   title: string
-  desc: string
+  desc?: string
 }
 
 const styles = {
@@ -40,9 +40,11 @@ export const ChainCard: FC<ChainCardProps> = ({
         <Typography variant="h5" component="h4" tw="pt-2">
           {title}
         </Typography>
-        <Typography variant="h6" tw="pt-1">
-          {desc}
-        </Typography>
+        {desc && (
+          <Typography variant="h6" tw="pt-1">
+            {desc}
+          </Typography>
+        )}
       </CardContent>
     </Card>
   )

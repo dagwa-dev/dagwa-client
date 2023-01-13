@@ -11,7 +11,7 @@ type DAppDetailPageProps = {
   dApp: DApp
 }
 type DAppDetailPageQuery = ParsedUrlQuery & {
-  id: string
+  ulid: string
 }
 
 const DAppDetailPage: NextPage<DAppDetailPageProps> = ({ dApp }) => (
@@ -33,9 +33,11 @@ export const getStaticPaths: GetStaticPaths<DAppDetailPageQuery> = async () => {
     take: 10,
   })
 
-  const paths: { params: DAppDetailPageQuery }[] = dApps.data.map(({ id }) => ({
-    params: { id: String(id) },
-  }))
+  const paths: { params: DAppDetailPageQuery }[] = dApps.data.map(
+    ({ ulid }) => ({
+      params: { ulid },
+    }),
+  )
 
   return {
     paths,
@@ -47,8 +49,8 @@ export const getStaticProps: GetStaticProps<
   DAppDetailPageProps,
   DAppDetailPageQuery
 > = async (context) => {
-  const id = String(context.params?.id)
-  const dApp = await getOneDApp(`${appConfig.serviceApiBase}/d_app/${id}`)
+  const ulid = String(context.params?.ulid)
+  const dApp = await getOneDApp(`${appConfig.serviceApiBase}/d_app/${ulid}`)
 
   return {
     props: {

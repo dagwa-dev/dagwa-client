@@ -11,7 +11,7 @@ type ChainDetailPageProps = {
   chain: Chain
 }
 type ChainDetailPageQuery = ParsedUrlQuery & {
-  id: string
+  ulid: string
 }
 
 const ChainDetailPage: NextPage<ChainDetailPageProps> = ({ chain }) => (
@@ -36,8 +36,8 @@ export const getStaticPaths: GetStaticPaths<
   })
 
   const paths: { params: ChainDetailPageQuery }[] = chains.data.map(
-    ({ id }) => ({
-      params: { id: String(id) },
+    ({ ulid }) => ({
+      params: { ulid },
     }),
   )
 
@@ -51,9 +51,9 @@ export const getStaticProps: GetStaticProps<
   ChainDetailPageProps,
   ChainDetailPageQuery
 > = async (context) => {
-  const id = String(context.params?.id)
-  const chain = await getOneChain(`${appConfig.serviceApiBase}/chain/${id}`)
-  console.info(chain)
+  const ulid = String(context.params?.ulid)
+  const chain = await getOneChain(`${appConfig.serviceApiBase}/chain/${ulid}`)
+
   return {
     props: {
       chain,

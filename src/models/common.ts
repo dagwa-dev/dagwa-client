@@ -1,5 +1,6 @@
 export type CommonModel = {
-  id?: number
-  createdAt?: Date
-  updatedAt?: Date
+  id: number
+  ulid: string
+  createdAt: Date
+  updatedAt: Date
 }
