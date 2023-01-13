@@ -2,9 +2,10 @@ import { AxiosError } from "axios"
 import useMutation, { SWRMutationResponse } from "swr/mutation"
 
 import { serviceApiRequest } from "~/api/axios/AxiosApiClient"
-import { appConfig } from "~/libs/appConfig"
+// import { appConfig } from "~/libs/appConfig"
 
-const baseUrl = appConfig.serviceApiBase
+// const baseUrl = appConfig.serviceApiBase
+const baseUrl = "/api"
 
 export const useSWRMutation = <T = unknown, D = unknown>(
   path: string,
