@@ -8,8 +8,8 @@ import { useSWRMutation } from "./useSWRMutation"
 
 const subscriptionFetcher = (
   url: string,
-  extraArgument: CreateSubscriberReq,
-): Promise<CreateSubscriberRes> => createSubscriber(url, extraArgument)
+  extraArgument: { arg: CreateSubscriberReq },
+): Promise<CreateSubscriberRes> => createSubscriber(url, extraArgument.arg)
 
 export const useSubscription = () =>
   useSWRMutation<CreateSubscriberRes, CreateSubscriberReq>(
