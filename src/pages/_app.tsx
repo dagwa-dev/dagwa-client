@@ -1,15 +1,15 @@
 import { ApolloProvider } from "@apollo/client"
-import { client } from "libs/apollo"
 import type { AppProps } from "next/app"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import Script from "next/script"
 import { useEffect } from "react"
 import { RecoilRoot } from "recoil"
-import StyleProvider from "styles/StyleProvider"
 import { SWRConfig } from "swr"
 
-import * as gtag from "../libs/gtag"
+import { client } from "~/libs/apollo"
+import * as gtag from "~/libs/gtag"
+import StyleProvider from "~/styles/StyleProvider"
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()

@@ -1,5 +1,5 @@
-import { PageOptions, PageResult } from "api/common/types"
-import { DApp } from "models/dApp"
+import { PageOptions, PageResult } from "~/api/common/types"
+import { DApp } from "~/models/dApp"
 
 // GetOneDApp
 export type GetOneDAppRes = DApp

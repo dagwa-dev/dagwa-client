@@ -1,5 +1,8 @@
-import { createSubscriber } from "api/subscriber/SubscriberApiClient"
-import { CreateSubscriberReq, CreateSubscriberRes } from "api/subscriber/types"
+import { createSubscriber } from "~/api/subscriber/SubscriberApiClient"
+import {
+  CreateSubscriberReq,
+  CreateSubscriberRes,
+} from "~/api/subscriber/types"
 
 import { useSWRMutation } from "./useSWRMutation"
 

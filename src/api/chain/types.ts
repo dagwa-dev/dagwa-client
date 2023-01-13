@@ -1,5 +1,5 @@
-import { PageOptions, PageResult } from "api/common/types"
-import { Chain } from "models/chain"
+import { PageOptions, PageResult } from "~/api/common/types"
+import { Chain } from "~/models/chain"
 
 // GetOneChain
 export type GetOneChainRes = Chain

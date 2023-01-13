@@ -12,8 +12,9 @@ import {
   Unstable_Grid2,
 } from "@mui/material"
 import Button from "@mui/material/Button"
-import { useSubscription } from "hooks/useSubscription"
 import { FC, useState } from "react"
+
+import { useSubscription } from "~/hooks/useSubscription"
 
 type SubscribeSectionProps = unknown
 

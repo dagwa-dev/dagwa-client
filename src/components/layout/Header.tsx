@@ -3,7 +3,6 @@ import "twin.macro"
 import MenuIcon from "@mui/icons-material/Menu"
 import { Typography } from "@mui/material"
 import AppBar from "@mui/material/AppBar"
-import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
@@ -33,9 +32,6 @@ export const Header = () => {
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
-  }
-  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
   }
 
   const handleCloseNavMenu = () => {
@@ -68,7 +64,7 @@ export const Header = () => {
               color: "inherit",
               textDecoration: "none",
             }}>
-            LOGO
+            DAGWA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -118,7 +114,7 @@ export const Header = () => {
             sx={{
               display: { xs: "flex", md: "none" },
             }}>
-            LOGO
+            DAGWA
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -135,11 +131,6 @@ export const Header = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Coming soon">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

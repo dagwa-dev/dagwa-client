@@ -12,7 +12,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -71,7 +71,7 @@ module.exports = {
     "no-unused-vars": 0,
     "no-use-before-define": "off",
     quotes: 0,
-    "react/no-unknown-property": ["error", { ignore: ["css","tw"] }],
+    "react/no-unknown-property": ["error", { ignore: ["css", "tw"] }],
     "react/no-unescaped-entities": 0,
     "react/prop-types": "off",
     "react/display-name": "off",
@@ -121,7 +121,9 @@ module.exports = {
       },
     ],
     "@typescript-eslint/no-empty-function": "warn",
-    "@typescript-eslint/no-unsafe-return": "warn",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
   },
   overrides: [
     {
@@ -131,4 +133,4 @@ module.exports = {
       },
     },
   ],
-};
+}

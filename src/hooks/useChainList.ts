@@ -1,16 +1,16 @@
-import { getAllChain } from "api/chain/ChainApiClient"
-import { GetAllChainParams, GetAllChainRes } from "api/chain/types"
+import { getAllChain } from "~/api/chain/ChainApiClient"
+import { GetAllChainParams, GetAllChainRes } from "~/api/chain/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 
-const getAllChainFetcher = (
-  url: string,
-  extraArgument: GetAllChainParams,
-): Promise<GetAllChainRes> => getAllChain(url, extraArgument)
+const getAllChainFetcher = ([url, extraArgument]: [
+  string,
+  GetAllChainParams,
+]): Promise<GetAllChainRes> => getAllChain(url, extraArgument)
 
 export const useChainList = (params: GetAllChainParams) => {
   const { data, error } = useSWRQuery<GetAllChainRes, GetAllChainParams>(
-    ["chain", params],
+    ["/chain", params],
     getAllChainFetcher,
   )
 
@@ -20,6 +20,6 @@ export const useChainList = (params: GetAllChainParams) => {
   return {
     loading,
     loggedOut,
-    chainList: data,
+    chains: data,
   }
 }
