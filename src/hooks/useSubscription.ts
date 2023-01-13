@@ -1,4 +1,4 @@
-import { createSubscriber } from "~/api/subscriber/SubscriberApiClient"
+import { createSubscriber } from "~/api/subscriber"
 import {
   CreateSubscriberReq,
   CreateSubscriberRes,

@@ -1,4 +1,4 @@
-import { getAllDApp } from "~/api/dApp/DAppApiClient"
+import { getAllDApp } from "~/api/dApp"
 import { GetAllDAppParams, GetAllDAppRes } from "~/api/dApp/types"
 
 import { useSWRQuery } from "./useSWRQuery"

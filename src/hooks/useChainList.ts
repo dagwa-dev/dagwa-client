@@ -1,4 +1,4 @@
-import { getAllChain } from "~/api/chain/ChainApiClient"
+import { getAllChain } from "~/api/chain"
 import { GetAllChainParams, GetAllChainRes } from "~/api/chain/types"
 
 import { useSWRQuery } from "./useSWRQuery"
