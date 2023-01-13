@@ -25,7 +25,7 @@ export const serviceApiRequest = async <T = unknown, D = unknown>(
 ): Promise<T> => {
   try {
     const res = await axiosClient.request<T, AxiosResponse<T, D>, D>(config)
-
+    console.info(res.status)
     return res.data
   } catch (error) {
     handleServiceError(error)

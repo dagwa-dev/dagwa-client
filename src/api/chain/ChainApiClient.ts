@@ -14,4 +14,8 @@ export const getOneChain: GetOneChain = async (url) =>
   })
 
 export const getAllChain: GetAllChain = async (url, params) =>
-  serviceApiRequest<GetAllChainRes>({ url, method: "GET", params })
+  serviceApiRequest<GetAllChainRes>({
+    url,
+    method: "GET",
+    params,
+  })

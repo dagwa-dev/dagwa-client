@@ -12,6 +12,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  rewrites: async () => [
+    {
+      source: "/api/:path*",
+      destination: "https://dagwa-api-production.up.railway.app/:path*",
+    },
+  ],
   env: {
     IS_LOCAL: process.env.IS_LOCAL,
     NEXT_PUBLIC_GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_TRACKING_ID,
