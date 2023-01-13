@@ -1,5 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios"
-import { appConfig } from "libs/appConfig"
+
+import { appConfig } from "~/libs/appConfig"
 
 import { ApiConfig } from "./AxiosApiConfig"
 import { handleServiceError } from "./AxiosApiServiceErrors"

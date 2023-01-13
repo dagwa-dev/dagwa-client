@@ -1,5 +1,5 @@
-import { getAllDApp } from "api/dApp/DAppApiClient"
-import { GetAllDAppParams, GetAllDAppRes } from "api/dApp/types"
+import { getAllDApp } from "~/api/dApp/DAppApiClient"
+import { GetAllDAppParams, GetAllDAppRes } from "~/api/dApp/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 

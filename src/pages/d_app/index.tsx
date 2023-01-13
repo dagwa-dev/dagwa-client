@@ -1,10 +1,11 @@
 import "twin.macro"
 
 import { Typography } from "@mui/material"
-import DAppCardList from "components/cardList/DAppCardList"
-import { useDAppList } from "hooks/useDAppList"
-import { numWithComma } from "libs/common"
 import { NextPage } from "next"
+
+import DAppCardList from "~/components/cardList/DAppCardList"
+import { useDAppList } from "~/hooks/useDAppList"
+import { numWithComma } from "~/libs/common"
 
 const DAppListPage: NextPage = () => {
   const { dApps, loading } = useDAppList({ page: 1, take: 10 })

@@ -1,9 +1,9 @@
-import { getAllChain } from "api/chain/ChainApiClient"
-import { GetAllChainParams, GetAllChainRes } from "api/chain/types"
+import { getAllChain } from "~/api/chain/ChainApiClient"
+import { GetAllChainParams, GetAllChainRes } from "~/api/chain/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 
-const getAllChainFetcher = async ([url, extraArgument]: [
+const getAllChainFetcher = ([url, extraArgument]: [
   string,
   GetAllChainParams,
 ]): Promise<GetAllChainRes> => getAllChain(url, extraArgument)

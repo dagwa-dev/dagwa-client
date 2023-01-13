@@ -1,4 +1,4 @@
-import { serviceApiRequest } from "api/axios/AxiosApiClient"
+import { serviceApiRequest } from "~/api/axios/AxiosApiClient"
 
 import {
   CreateSubscriber,
@@ -6,7 +6,7 @@ import {
   CreateSubscriberRes,
 } from "./types"
 
-export const createSubscriber: CreateSubscriber = async (url, data) =>
+export const createSubscriber: CreateSubscriber = (url, data) =>
   serviceApiRequest<CreateSubscriberRes, CreateSubscriberReq>({
     url,
     method: "POST",

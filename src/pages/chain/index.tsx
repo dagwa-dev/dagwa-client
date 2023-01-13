@@ -1,10 +1,11 @@
 import "twin.macro"
 
 import { Typography } from "@mui/material"
-import ChainCardList from "components/cardList/ChainCardList"
-import { useChainList } from "hooks/useChainList"
-import { numWithComma } from "libs/common"
 import { NextPage } from "next"
+
+import ChainCardList from "~/components/cardList/ChainCardList"
+import { useChainList } from "~/hooks/useChainList"
+import { numWithComma } from "~/libs/common"
 
 const ChainListPage: NextPage = () => {
   const { chains, loading } = useChainList({ page: 1, take: 10 })

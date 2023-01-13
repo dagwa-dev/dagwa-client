@@ -1,9 +1,10 @@
 import "twin.macro"
 
 import { Unstable_Grid2 as Grid } from "@mui/material"
-import { ChainCard } from "components/card/ChainCard"
-import { Chain } from "models/chain"
 import { FC } from "react"
+
+import { ChainCard } from "~/components/card/ChainCard"
+import { Chain } from "~/models/chain"
 
 type ChainCardListProps = {
   chains: Chain[]

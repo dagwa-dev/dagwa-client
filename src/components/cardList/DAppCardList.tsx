@@ -1,9 +1,11 @@
 import "twin.macro"
 
 import { Unstable_Grid2 as Grid } from "@mui/material"
-import { DAppCard } from "components/card/DAppCard"
-import { DApp } from "models/dApp"
 import { FC } from "react"
+
+import { DApp } from "~/models/dApp"
+
+import { DAppCard } from "../card/DAppCard"
 
 type DAppCardListProps = {
   dApps: DApp[]

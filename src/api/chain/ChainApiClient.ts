@@ -1,4 +1,4 @@
-import { serviceApiRequest } from "api/axios/AxiosApiClient"
+import { serviceApiRequest } from "~/api/axios/AxiosApiClient"
 
 import {
   GetAllChain,
@@ -7,13 +7,13 @@ import {
   GetOneChainRes,
 } from "./types"
 
-export const getOneChain: GetOneChain = async (url) =>
+export const getOneChain: GetOneChain = (url) =>
   serviceApiRequest<GetOneChainRes>({
     url,
     method: "GET",
   })
 
-export const getAllChain: GetAllChain = async (url, params) =>
+export const getAllChain: GetAllChain = (url, params) =>
   serviceApiRequest<GetAllChainRes>({
     url,
     method: "GET",

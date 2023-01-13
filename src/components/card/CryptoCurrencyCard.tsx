@@ -1,13 +1,14 @@
 import { Card, CardMedia } from "@mui/material"
-import { CryptoCurrencyIcon } from "components/icon"
-import { CRYPTO_CURRENCY_INFO_LIST } from "components/icon/CryptoCurrencyIcon/constants"
-import {
-  CryptoCurrencySymbol,
-  SafeNumber,
-} from "components/icon/CryptoCurrencyIcon/type"
 import { useRouter } from "next/router"
 import { FC, PropsWithChildren } from "react"
 import tw from "twin.macro"
+
+import { CryptoCurrencyIcon } from "~/components/icon"
+import { CRYPTO_CURRENCY_INFO_LIST } from "~/components/icon/CryptoCurrencyIcon/constants"
+import {
+  CryptoCurrencySymbol,
+  SafeNumber,
+} from "~/components/icon/CryptoCurrencyIcon/type"
 
 interface CryptoCurrencyCardProps extends PropsWithChildren {
   symbol: CryptoCurrencySymbol

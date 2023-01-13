@@ -18,7 +18,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    }
   },
   "files": [
     "types/twin.d.ts"
@@ -34,6 +39,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "src/components/card/DAppCard"
+    "src/~/components/card/DAppCard"
   ]
 }

@@ -1,4 +1,4 @@
-import { GetOneChainRes } from "api/chain/types"
+import { GetOneChainRes } from "~/api/chain/types"
 
 import { useSWRQuery } from "./useSWRQuery"
 

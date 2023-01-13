@@ -1,10 +1,11 @@
 import "twin.macro"
 
 import { Typography, Unstable_Grid2 } from "@mui/material"
-import { useDApp } from "hooks/useDApp"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+
+import { useDApp } from "~/hooks/useDApp"
 
 const DAppDetailPage: NextPage = () => {
   const router = useRouter()
@@ -21,7 +22,7 @@ const DAppDetailPage: NextPage = () => {
   return (
     <div tw="w-full">
       <section tw="max-w-5xl mx-auto px-2 py-4">
-        <Typography>DApps{dApp.name && ` / ${dApp.name}`}</Typography>
+        <Typography>DApps{` / ${dApp.name}`}</Typography>
         <Unstable_Grid2
           container
           tw="mt-2"
